@@ -35,6 +35,13 @@ def GetPeople():
 
 @app.route('/api/people/<name>')
 def SayHello(name):
+    if name == 'gino':
+    message = {
+        'message': 'Maliit ang titi ni ' + name
+    } 
+    elif name == 'carlo':
+        'message': 'Maliit ang titi ni ' + name      
+    else:   
     message = {
         'message': 'Maliit ang titi ni ' + name
     }
