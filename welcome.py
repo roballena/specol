@@ -37,10 +37,10 @@ def GetPeople():
 def SayHello(name):
     if name == 'gino':
     message = {
-        'message': 'Maliit ang titi ni ' + name
+        'message': 'Malaki ang titi ni ' + name
     } 
     elif name == 'carlo':
-        'message': 'Maliit ang titi ni ' + name      
+        'message': 'Malaki ang titi ni ' + name      
     else:   
     message = {
         'message': 'Maliit ang titi ni ' + name
