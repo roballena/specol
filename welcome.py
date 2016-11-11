@@ -34,18 +34,12 @@ def GetPeople():
     return jsonify(results=list)
 
 @app.route('/api/people/<name>')
-def SayHello(name):
-    if name == 'gino':
+def SayHello(name):   
     message = {
         'message': 'Malaki ang titi ni ' + name
-    } 
-    elif name == 'carlo':
-        'message': 'Malaki ang titi ni ' + name      
-    else:   
-    message = {
-        'message': 'Maliit ang titi ni ' + name
     }
     return jsonify(results=message)
+
 
 port = os.getenv('PORT', '5000')
 if __name__ == "__main__":
