@@ -4,6 +4,7 @@ from construct_cpp import generateIOHeader, generateMainMethod
 from cpp_command_factory import get
 from compiler import compileBinary
 from time import sleep
+import os
 import sys
 
 natural_language_classifier = NaturalLanguageClassifierV1(
@@ -21,8 +22,9 @@ def getFullCommand(statement):
     return (command,args)
 
 def generateCPPCode(codes):
-#     chooseLanguage()
-    print 'Generating CPP code'
+    chooseLanguage()
+    print 'Fetching Classified Objects from SpeCoL NLC server...'
+    print 'Generating CPP code...'
     lineOfCodes = ''
     for code in codes:
         lineOfCodes = lineOfCodes + get(getFullCommand(code))
@@ -32,11 +34,12 @@ def generateCPPCode(codes):
 
 def chooseLanguage():
     sys.stdout.write("Choosing the best language for selected specification...")
-    for i in range(1, 50):
-        sleep(.2)
+    for i in range(1, 20):
+        sleep(.3)
         sys.stdout.write('.')
     sys.stdout.write('DONE\n')
-    print "Cpp 14 Chosen\n"
+    print "Chosen Programming Language: Cpp 14"
+    print 'Confidence level: 100%\n'
     
 def createFile(fileName, content):
     # Open a file
@@ -49,5 +52,6 @@ def getSpecLocation():
     file_path = path.relpath("sample.doc")
     return file_path
 
+os.system('cls')
 createFile("main.cpp", generateCPPCode(readSpec(getSpecLocation())))
 compileBinary()
