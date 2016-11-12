@@ -2,7 +2,7 @@ from os import path
 from watson_developer_cloud import NaturalLanguageClassifierV1
 from construct_cpp import generateIOHeader, generateMainMethod
 from cpp_command_factory import get
-from compiler import compileBinary, runBinary
+from compiler import compileBinary
 from time import sleep
 import sys
 
@@ -15,15 +15,17 @@ def readSpec(filename):
         lines = f.read().splitlines()
     return lines
 
-def getCommand(statement):
-    classes = natural_language_classifier.classify('e82f62x108-nlc-5131', statement)
-    return classes["top_class"].splitlines()
-    
+def getFullCommand(statement):
+    command = natural_language_classifier.classify('e3ca6dx107-nlc-5855', statement)["top_class"]
+    args = natural_language_classifier.classify('f48968x109-nlc-4949', statement)["top_class"]
+    return (command,args)
+
 def generateCPPCode(codes):
-    chooseLanguage()
+#     chooseLanguage()
+    print 'Generating CPP code'
     lineOfCodes = ''
     for code in codes:
-        lineOfCodes = lineOfCodes + get(getCommand(code))
+        lineOfCodes = lineOfCodes + get(getFullCommand(code))
     file_output = generateIOHeader() + generateMainMethod(lineOfCodes)
     
     return file_output
@@ -33,7 +35,7 @@ def chooseLanguage():
     for i in range(1, 50):
         sleep(.2)
         sys.stdout.write('.')
-    sys.stdout.write('\n')
+    sys.stdout.write('DONE\n')
     print "Cpp 14 Chosen\n"
     
 def createFile(fileName, content):
@@ -49,4 +51,3 @@ def getSpecLocation():
 
 createFile("main.cpp", generateCPPCode(readSpec(getSpecLocation())))
 compileBinary()
-runBinary()

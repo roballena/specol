@@ -1,6 +1,5 @@
 import os
 
-
 def compileBinary():
     print "Compiling c++ code\n"
     os.system('g++ main.cpp -o main.exe')
