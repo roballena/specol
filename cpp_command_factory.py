@@ -1,10 +1,10 @@
 def get(command):
-    if command == 'cin':
+    if command[0] == 'cin':
         storage = 'int x =0;\n'
         cin = 'std::cin >> x;\n'
         return  storage + cin
-    elif command == 'out_res':
-        return "std::cout<<std::endl\n"
+    elif command[0] == 'out_res':
+        return "std::cout<<x<<std::endl;\n"
     else:
         return "//I'm still stupid, Teach me Master!\n"
     
