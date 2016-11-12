@@ -20,6 +20,10 @@ app = Flask(__name__)
 @app.route('/')
 def Welcome():
     return app.send_static_file('index.html')
+    
+@app.route('/specol')
+def Specol():
+    return app.send_static_file('specol.html')
 
 @app.route('/myapp')
 def WelcomeToMyapp():
