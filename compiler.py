@@ -2,8 +2,8 @@ import os
 
 
 def compileBinary():
-    print "Compiler c++ code\n"
-    os.system('g++ main.cpp -o main')
+    print "Compiling c++ code\n"
+    os.system('g++ main.cpp -o main.exe')
     print 'Code compilation done!\n'
     
 def runBinary():

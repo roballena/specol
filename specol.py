@@ -3,6 +3,8 @@ from watson_developer_cloud import NaturalLanguageClassifierV1
 from construct_cpp import generateIOHeader, generateMainMethod
 from cpp_command_factory import get
 from compiler import compileBinary, runBinary
+from time import sleep
+import sys
 
 natural_language_classifier = NaturalLanguageClassifierV1(
   username='0d8af576-53ef-4feb-9511-7cb30a2b1728',
@@ -18,6 +20,7 @@ def getCommand(statement):
     return classes["top_class"].splitlines()
     
 def generateCPPCode(codes):
+    chooseLanguage()
     lineOfCodes = ''
     for code in codes:
         lineOfCodes = lineOfCodes + get(getCommand(code))
@@ -25,7 +28,14 @@ def generateCPPCode(codes):
     
     return file_output
 
-
+def chooseLanguage():
+    sys.stdout.write("Choosing the best language for selected specification...")
+    for i in range(1, 50):
+        sleep(.2)
+        sys.stdout.write('.')
+    sys.stdout.write('\n')
+    print "Cpp 14 Chosen\n"
+    
 def createFile(fileName, content):
     # Open a file
     fo = open(fileName, "wb")
